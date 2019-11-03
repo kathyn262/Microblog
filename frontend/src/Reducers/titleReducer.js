@@ -6,6 +6,10 @@ import {
   LOADTITLES
 } from "../actionTypes";
 
+// need this fn to avoid passing in all details about post
+// into title
+// passing all details into title would be wasteful 
+
 function makeTitleFromPost(post) {
   return {
     id: post.id,
@@ -38,6 +42,15 @@ export default function rootReducer(state = [], action) {
 
     case REMOVEPOST:
       return state.filter(title => title.id !== action.id);
+
+    case VOTE: 
+      titleIdx = state.findIndex(title => title.id === action.payload.postId);
+
+      return [
+        ...state.slice(0, titleIdx),
+        { ...state[titleIdx], votes: action.payload.votes },
+        ...state.slice(titleIdx + 1)
+      ]
 
     default:
       return state;

@@ -13,6 +13,7 @@ class PostDetail extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleCancelEdit = this.handleCancelEdit.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleVote = this.handleVote.bind(this);
   }
 
   async componentDidMount() {
@@ -41,6 +42,10 @@ class PostDetail extends React.Component {
     this.props.history.push('/');
   }
 
+  handleVote(id, direction) {
+    this.props.sendVoteToAPI(id, direction);
+  }
+
   render() {
     let currentPost = this.props.post.post;
     if (!currentPost) { return this.renderLoading(); }
@@ -64,11 +69,11 @@ class PostDetail extends React.Component {
               {currentPost.votes} votes:
               <i className='fas fa-thumbs-up'
                 style={{ color: 'green', marginLeft: '10px' }}
-                onClick={() => this.handleUpVote(currentPost.id, 'up')}
+                onClick={() => this.handleVote(currentPost.id, 'up')}
               ></i>
               <i className='fas fa-thumbs-down'
                 style={{ color: 'red', marginLeft: '10px' }}
-                onClick={() => this.handleDownVote(currentPost.id, 'down')}
+                onClick={() => this.handleVote(currentPost.id, 'down')}
               ></i>
             </div>
 

@@ -1,24 +1,12 @@
 import PostDetail from '../Components/PostDetail';
 import { connect } from 'react-redux';
-// import {
-//   editPost,
-//   removePost,
-//   addComment,
-//   removeComment,
-//   getOnePostFromApi,
-//   updatePostFromApi, 
-//   deletePostFromApi, 
-//   getCommentsFromApi, 
-//   addCommentToApi, 
-//   deleteCommentFromApi, 
-//   sendVoteToAPI
-// } from "../actions";
 import {
   getPostFromApi,
   updatePostFromApi,
   deletePostFromApi, 
   addCommentToApi, 
-  deleteCommentFromApi
+  deleteCommentFromApi,
+  sendVoteToAPI
 } from '../actions';
 
 function mapStateToProps(state) {
@@ -32,7 +20,8 @@ const mapDispatchToProps = {
   updatePostFromApi,
   deletePostFromApi, 
   addCommentToApi,
-  deleteCommentFromApi
+  deleteCommentFromApi,
+  sendVoteToAPI
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

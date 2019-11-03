@@ -5,7 +5,7 @@ class CommentForm extends React.Component {
     super(props);
     this.state = {
       text: ''
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }

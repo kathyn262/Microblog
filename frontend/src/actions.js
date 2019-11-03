@@ -151,25 +151,24 @@ export function deleteCommentFromApi(commentId, postId) {
   }
 }
 
-// export function vote(postId, votes) {
-//   return {
-//     type: VOTE,
-//     payload: {
-//       postId, 
-//       votes
-//     }
-//   };
-// }
+export function vote(postId, votes) {
+  return {
+    type: VOTE,
+    payload: {
+      postId, 
+      votes
+    }
+  };
+}
 
-
-// export function sendVoteToAPI(postId, direction) {
-//   return async function thunk(dispatch) {
-//     try {
-//       const response = await axios.post(`${BASE_URL}/api/posts/${postId}/vote/${direction}`);
-//       dispatch(vote(postId, response.data.votes));
-//     } catch (error) {
-//       dispatch(handleError(error));
-//       console.log("in error")
-//     }
-//   };
-// }
+export function sendVoteToAPI(postId, direction) {
+  return async function thunk(dispatch) {
+    try {
+      const response = await axios.post(`${BASE_URL}/api/posts/${postId}/vote/${direction}`);
+      dispatch(vote(postId, response.data.votes));
+    } catch (error) {
+      dispatch(handleError(error));
+      console.log("in error", error)
+    }
+  };
+}
