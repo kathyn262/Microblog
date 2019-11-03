@@ -6,7 +6,7 @@ class NavBox extends React.Component {
     return (
         <div className="jumbotron">
         <h1>Microblog</h1>
-        <h3>Get in the Rithm of blogging!</h3>
+        <h3>Get in the rhythm of blogging!</h3>
 
         <div>
           <NavLink className="nav-item" style={{ marginRight: "10px" }}
