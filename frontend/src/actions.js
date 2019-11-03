@@ -108,26 +108,26 @@ export function deletePostFromApi(id) {
   }
 }
 
-// export function addComment(comment, postId) {
-//   return {
-//     type: ADDCOMMENT,
-//     payload: {
-//       comment,
-//       postId
-//     }
-//   };
-// }
+export function addComment(comment, postId) {
+  return {
+    type: ADDCOMMENT,
+    payload: {
+      comment,
+      postId
+    }
+  };
+}
 
-// export function addCommentToApi(postId, comment) {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.post(`${BASE_URL}/api/posts/${postId}/comments`, comment);
-//       dispatch(addComment(response.data, postId));
-//   } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   }
-// }
+export function addCommentToApi(postId, comment) {
+  return async function thunk(dispatch) {
+    try {
+      let response = await axios.post(`${BASE_URL}/api/posts/${postId}/comments`, comment);
+      dispatch(addComment(response.data, postId));
+  } catch (error) {
+      dispatch(handleError(error));
+    }
+  }
+}
 
 // function getComments(comments, postId) {
 //   return { type: LOADCOMMENTS, comments, postId };

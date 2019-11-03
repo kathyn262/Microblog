@@ -1,5 +1,7 @@
 import React from 'react';
 import PostForm from './PostForm';
+import CommentList from './CommentList';
+import CommentForm from './CommentForm';
 
 class PostDetail extends React.Component {
   constructor(props) {
@@ -75,9 +77,9 @@ class PostDetail extends React.Component {
             <p>{currentPost.body}</p>
             <hr className='my-4' />
             <h1 className='display-6'>Comments</h1>
-            {/* <CommentList currentPost={currentPost} 
+            <CommentList currentPost={currentPost} 
             deleteCommentFromApi={this.props.deleteCommentFromApi} />
-            <CommentForm addComment={this.props.addCommentToApi} postId={currentPost} /> */}
+            <CommentForm addComment={this.props.addCommentToApi} postId={currentPost.id} />
           </div>
         </div>
         <div style={{ visibility }} className="form-div">

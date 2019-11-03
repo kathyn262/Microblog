@@ -24,6 +24,20 @@ export default function rootReducer(state = {}, action) {
     case EDITPOST:
       return { ...state, [action.payload.id]: action.payload.post };
 
+    case ADDCOMMENT:
+      const { postId } = action.payload;
+      if (!state.post || +postId !== state.post.id) return state;
+
+      let post = { ...state.post };
+
+      post.comments = [
+        ...post.comments,
+        { ...action.payload.comment }
+      ];
+      return {
+        ...state,
+        post
+      };
 
     default:
       return state;
