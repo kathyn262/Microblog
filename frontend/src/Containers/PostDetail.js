@@ -15,7 +15,8 @@ import { connect } from 'react-redux';
 // } from "../actions";
 import {
   getPostFromApi,
-  updatePostFromApi
+  updatePostFromApi,
+  deletePostFromApi
 } from '../actions';
 
 function mapStateToProps(state) {
@@ -26,7 +27,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   getPostFromApi,
-  updatePostFromApi
+  updatePostFromApi,
+  deletePostFromApi
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

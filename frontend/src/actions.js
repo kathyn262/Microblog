@@ -88,24 +88,25 @@ export function updatePostFromApi(id, postData) {
     }
   }
 }
-            // export function removePost(id) {
-            //   return {
-            //     type: REMOVEPOST,
-            //     payload: id
-            //   };
-            // }
+
+export function removePost(id) {
+  return {
+    type: REMOVEPOST,
+    id
+  };
+}
 
 
-// export function deletePostFromApi(id) {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.delete(`${BASE_URL}/api/posts/${id}`);
-//       dispatch(removePost(response.data));
-//     } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   }
-// }
+export function deletePostFromApi(id) {
+  return async function thunk(dispatch) {
+    try {
+      let response = await axios.delete(`${BASE_URL}/api/posts/${id}`);
+      dispatch(removePost(id));
+    } catch (error) {
+      dispatch(handleError(error));
+    }
+  }
+}
 
 // export function addComment(comment, postId) {
 //   return {

@@ -24,6 +24,7 @@ export default function rootReducer(state = {}, action) {
     case EDITPOST:
       return { ...state, [action.payload.id]: action.payload.post };
 
+
     default:
       return state;
   }

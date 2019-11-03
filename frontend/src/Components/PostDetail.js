@@ -10,6 +10,7 @@ class PostDetail extends React.Component {
     this.toggleEditForm = this.toggleEditForm.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.handleCancelEdit = this.handleCancelEdit.bind(this);
+    this.handleRemove = this.handleRemove.bind(this);
   }
 
   async componentDidMount() {
@@ -31,6 +32,11 @@ class PostDetail extends React.Component {
 
   handleCancelEdit() {
     this.props.history.push('/')
+  }
+
+  async handleRemove(id) {
+    await this.props.deletePostFromApi(id);
+    this.props.history.push('/');
   }
 
   render() {

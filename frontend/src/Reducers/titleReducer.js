@@ -35,11 +35,9 @@ export default function rootReducer(state = [], action) {
         { id, title, description, votes },
         ...state.slice(titleIdx + 1)
       ]
-    // let editedPost = state.find(p => p.id === action.payload.id);
-    // console.log('hasalloo', editedPost)
-    //   editedPost = action.payload.newPost;
-    // console.log(action.payload.post)
-    //   return [...state];
+
+    case REMOVEPOST:
+      return state.filter(title => title.id !== action.id);
 
     default:
       return state;
