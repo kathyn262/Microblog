@@ -1,8 +1,8 @@
-import postReducer from './postReducer.js';
-import titleReducer from './titleReducer.js';
+import posts from './postReducer';
+import titles from './titleReducer';
 import { combineReducers } from "../../node_modules/redux";
 
 export default combineReducers({
-  postReducer,
-  titleReducer,
+  posts,
+  titles,
 });

@@ -1,29 +1,30 @@
 import { connect } from 'react-redux';
-// import {getPostsFromApi, sendVoteToAPI} from '../actions';
+import {fetchTitlesFromAPI} from '../actions';
 
 import React from 'react';
 
 class TitleList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        
-        }
+  componentDidMount() {
+    if (this.props.titles.length === 0) {
+      this.props.fetchTitlesFromAPI();
     }
+  }
 
-    render() {
-        return (
-          "title list container"
-        )
-    }
-} 
+  render() {
+    if (this.props.titles.length === 0) return <b>Loading</b>;
 
-function mapStateToProps(state) {
-  return {
-    posts: state.posts
+    return (
+      this.props.titles.map( post =>
+        <div>{post.title}</div>
+      )
+    )
   }
 }
 
-// const matchDispatchToProps = { getPostsFromApi, sendVoteToAPI }
+function mapStateToProps(state) {
+  return {
+    titles: state.titles
+  }
+}
 
-export default connect(mapStateToProps)(TitleList);
+export default connect(mapStateToProps, {fetchTitlesFromAPI})(TitleList);

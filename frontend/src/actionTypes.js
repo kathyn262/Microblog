@@ -1,0 +1,11 @@
+export const ADDPOST = "ADDPOST";
+export const EDITPOST = "EDITPOST";
+export const REMOVEPOST = "REMOVEPOST";
+export const LOADTITLES = "LOADTITLES";
+export const ADDCOMMENT = "ADDCOMMENT";
+export const REMOVECOMMENT = "REMOVECOMMENT";
+export const LOADPOSTS = "LOADPOSTS";
+export const LOADONEPOST = "LOADONEPOST";
+export const ERROR = "ERROR";
+export const LOADCOMMENTS = "LOADCOMMENTS";
+export const VOTE = "VOTE";
