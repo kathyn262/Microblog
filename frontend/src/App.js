@@ -6,7 +6,7 @@ import Routes from './Components/Routes';
 class App extends React.Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <NavBox />
         <Routes />
       </div>

@@ -1,24 +1,24 @@
 import React from 'react';
-import uuid from 'uuid/v4';
 
 class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.isEditing ? {
-      title: this.props.currentPost.title, 
-      description: this.props.currentPost.description, 
+      title: this.props.currentPost.title,
+      description: this.props.currentPost.description,
       body: this.props.currentPost.body,
-      id: this.props.currentPost.id
+      id: this.props.currentPost.id,
+      votes: this.props.currentPost.votes
     } : {
-      title: '', 
-      description: '', 
-      body: '',
-      id: uuid()
-    };
+        title: '',
+        description: '',
+        body: '',
+        votes: 0
+      };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleSubmit(evt) {
@@ -27,25 +27,26 @@ class PostForm extends React.Component {
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.value});
+    this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  handleCancel(evt) {
-    evt.preventDefault();
+  handleCancel() {
     this.props.cancel();
   }
 
-  async handleEdit(evt){
-     evt.preventDefault();
-     await this.props.updatePostFromApi(this.state.id, this.state);
-     this.props.history.push("/");
+  async handleEdit(evt) {
+    evt.preventDefault();
+    await this.props.updatePost(this.state.id, this.state);
   }
 
   render() {
+    let submit;
+    this.props.isEditing ? submit = this.handleEdit : submit = this.handleSubmit;
+
     return (
       <React.Fragment>
         <div className='col-8' style={{ margin: "0 auto" }}>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={submit}>
             <div className='form-group'>
               <label htmlFor='title'>Title</label>
               <input
@@ -79,7 +80,7 @@ class PostForm extends React.Component {
                 name='body'
                 value={this.state.body}
                 onChange={this.handleChange}
-               ></textarea>
+              ></textarea>
             </div>
             <button
               type='submit'
@@ -91,7 +92,8 @@ class PostForm extends React.Component {
           <button
             type='button'
             className='btn btn-secondary'
-            >
+            onClick={this.handleCancel}
+          >
             Cancel
           </button>
         </div>

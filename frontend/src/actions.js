@@ -6,8 +6,7 @@ import {
   LOADTITLES,
   ADDCOMMENT,
   REMOVECOMMENT,
-  LOADPOSTS,
-  LOADONEPOST, 
+  LOADPOST,
   LOADCOMMENTS,
   VOTE
 } from "./actionTypes";
@@ -21,30 +20,12 @@ function getTitles(titles) {
   };
 }
 
-export function fetchTitlesFromAPI() {
+export function getTitlesFromAPI() {
   return async function (dispatch) {
     const response = await axios.get(`${BASE_URL}/api/posts`);
     return dispatch(getTitles(response.data));
   };
 }
-
-
-// export function editPost(id, newPost) {
-//   return {
-//     type: EDITPOST,
-//     payload: {
-//       id,
-//       newPost
-//     }
-//   };
-// }
-
-// export function removePost(id) {
-//   return {
-//     type: REMOVEPOST,
-//     payload: id
-//   };
-// }
 
 function handleError(error) {
   return {
@@ -53,67 +34,67 @@ function handleError(error) {
   };
 }
 
-export function addPost(post) {
+export function addPost(post, id) {
   return {
     type: ADDPOST,
-    post
+    post,
+    id
   };
 }
 
-export function addPostToApi(data) {
+export function addPostToApi(data, id) {
   return async function thunk(dispatch) {
     try {
       let response = await axios.post(`${BASE_URL}/api/posts`, data);
-      dispatch(addPost(response.data));
+      dispatch(addPost(response.data, id));
     } catch (error) {
       dispatch(handleError(error));
     }
   };
 }
 
-// function getPosts(posts) {
-//   return { type: LOADPOSTS, posts };
-// }
+function getPost(post) {
+  return { type: LOADPOST, post };
+}
 
-// export function getPostsFromApi() {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.get(`${BASE_URL}/api/posts`);
-//       dispatch(getPosts(response.data));
-//     } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   };
-// }
+export function getPostFromApi(id) {
+  return async function thunk(dispatch) {
+    try {
+      let response = await axios.get(`${BASE_URL}/api/posts/${id}`);
+      dispatch(getPost(response.data));
+    } catch (error) {
+      dispatch(handleError(error));
+    }
+  };
+}
 
-// function getPost(post) {
-//   return {
-//     type: LOADONEPOST,
-//     post
-//   }
-// }
+export function editPost(id, post) {
+  return {
+    type: EDITPOST,
+    payload: {
+      id,
+      post
+    }
+  };
+}
 
-// export function getOnePostFromApi(id) {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.get(`${BASE_URL}/api/posts/${id}`);
-//       dispatch(getPost(response.data));
-//     } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   };
-// }
+export function updatePostFromApi(id, postData) {
+  return async function thunk(dispatch) {
+    try {
+      let response = await axios.put(`${BASE_URL}/api/posts/${id}`, postData);
+      dispatch(editPost(id, response.data))
+    } catch (error) {
+      dispatch(handleError(error));
+    }
+  }
+}
+            // export function removePost(id) {
+            //   return {
+            //     type: REMOVEPOST,
+            //     payload: id
+            //   };
+            // }
 
-// export function updatePostFromApi(id, postData) {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.put(`${BASE_URL}/api/posts/${id}`, postData);
-//       dispatch(editPost(id, response.data))
-//     } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   }
-// }
 
 // export function deletePostFromApi(id) {
 //   return async function thunk(dispatch) {

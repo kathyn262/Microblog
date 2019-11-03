@@ -4,7 +4,7 @@ import {
   REMOVEPOST,
   ADDCOMMENT,
   REMOVECOMMENT,
-  LOADPOSTS,
+  LOADPOST,
   LOADONEPOST,
   ERROR,
   LOADCOMMENTS,
@@ -15,11 +15,14 @@ export default function rootReducer(state = {}, action) {
 
   switch (action.type) {
 
-    case LOADPOSTS:
-      return { ...state, [action.post.id]: action.post };
+    case LOADPOST:
+      return { ...state, post: action.post };
 
     case ADDPOST:
-      return { ...state, [action.post.id]: { ...action.post, comments: [] } };
+      return { ...state, [action.id]: { ...action.post, comments: [] } };
+
+    case EDITPOST:
+      return { ...state, [action.payload.id]: action.payload.post };
 
     default:
       return state;

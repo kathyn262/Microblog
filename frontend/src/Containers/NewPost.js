@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import PostForm from '../Components/PostForm';
 import { addPost, addPostToApi } from "../actions";
+import uuid from 'uuid/v4';
 
 class NewPost extends React.Component {
   constructor(props) {
@@ -10,8 +11,10 @@ class NewPost extends React.Component {
     this.cancel = this.cancel.bind(this);
   }
 
+  // adds post and saves to backend 
+
   add(postData) {
-    this.props.addPostToApi(postData);
+    this.props.addPostToApi(postData, uuid());
     this.props.history.push('/');
   }
 
