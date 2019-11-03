@@ -88,7 +88,6 @@ class PostForm extends React.Component {
               style={{ marginRight: '10px' }}>
               Save
             </button>
-          </form>
           <button
             type='button'
             className='btn btn-secondary'
@@ -96,6 +95,7 @@ class PostForm extends React.Component {
           >
             Cancel
           </button>
+          </form>
         </div>
       </React.Fragment>
     )
