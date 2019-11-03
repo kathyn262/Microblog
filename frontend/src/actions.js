@@ -129,43 +129,27 @@ export function addCommentToApi(postId, comment) {
   }
 }
 
-// function getComments(comments, postId) {
-//   return { type: LOADCOMMENTS, comments, postId };
-// }
+export function removeComment(commentId, postId) {
+  return {
+    type: REMOVECOMMENT,
+    payload: {
+      commentId,
+      postId
+    }
+  };
+}
 
-// export function getCommentsFromApi(postId) {
-//   return async function thunk(dispatch) {
-//     try {
-//       let response = await axios.get(`${BASE_URL}/api/posts/${postId}/comments`);
-//       dispatch(getComments(response.data, postId));
-//   } catch (error) {
-//       dispatch(handleError(error));
-//     }
-//   }
-// }
-
-// export function removeComment(commentId, postId) {
-//   return {
-//     type: REMOVECOMMENT,
-//     payload: {
-//       commentId,
-//       postId
-//     }
-//   };
-// }
-
-// export function deleteCommentFromApi(commentId, postId) {
-//     console.log("api", commentId, postId)
-//   return async function thunk(dispatch) {
-//     try {
-//       await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
-//       dispatch(removeComment(commentId, postId));
-//   } catch (error) {
-//       dispatch(handleError(error));
-//       console.log("in error")
-//     }
-//   }
-// }
+export function deleteCommentFromApi(commentId, postId) {
+  return async function thunk(dispatch) {
+    try {
+      await axios.delete(`${BASE_URL}/api/posts/${postId}/comments/${commentId}`);
+      dispatch(removeComment(commentId, postId));
+  } catch (error) {
+      dispatch(handleError(error));
+      console.log("in error")
+    }
+  }
+}
 
 // export function vote(postId, votes) {
 //   return {

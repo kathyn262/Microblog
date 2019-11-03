@@ -17,7 +17,8 @@ import {
   getPostFromApi,
   updatePostFromApi,
   deletePostFromApi, 
-  addCommentToApi
+  addCommentToApi, 
+  deleteCommentFromApi
 } from '../actions';
 
 function mapStateToProps(state) {
@@ -30,7 +31,8 @@ const mapDispatchToProps = {
   getPostFromApi,
   updatePostFromApi,
   deletePostFromApi, 
-  addCommentToApi
+  addCommentToApi,
+  deleteCommentFromApi
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostDetail);

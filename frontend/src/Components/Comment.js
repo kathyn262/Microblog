@@ -9,7 +9,6 @@ class Comment extends React.Component {
 
   handleRemove(commentId, postId) {
     this.props.deleteCommentFromApi(commentId, postId);
-
   }
 
   render() {
