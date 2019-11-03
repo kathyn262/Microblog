@@ -51,7 +51,6 @@ class PostDetail extends React.Component {
     if (!currentPost) { return this.renderLoading(); }
     let visibility = this.state.visibility ? "hidden" : "visible";
 
-    
     return (
       <React.Fragment>
         <div className='col-10' style={{ margin: "0 auto" }}>

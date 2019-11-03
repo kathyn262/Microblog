@@ -8,7 +8,6 @@ import {
 } from "../actionTypes";
 
 export default function rootReducer(state = {}, action) {
-
   switch (action.type) {
 
     case LOADPOST:

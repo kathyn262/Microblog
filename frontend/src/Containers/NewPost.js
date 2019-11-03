@@ -11,8 +11,6 @@ class NewPost extends React.Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  // adds post and saves to backend 
-
   add(postData) {
     this.props.addPostToApi(postData, uuid());
     this.props.history.push('/');
@@ -31,6 +29,5 @@ class NewPost extends React.Component {
     )
   }
 }
-
 
 export default connect(null, { addPost, addPostToApi })(NewPost);

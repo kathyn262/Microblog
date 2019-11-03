@@ -7,7 +7,6 @@ import {
   ADDCOMMENT,
   REMOVECOMMENT,
   LOADPOST,
-  LOADCOMMENTS,
   VOTE
 } from "./actionTypes";
 
@@ -95,7 +94,6 @@ export function removePost(id) {
     id
   };
 }
-
 
 export function deletePostFromApi(id) {
   return async function thunk(dispatch) {
