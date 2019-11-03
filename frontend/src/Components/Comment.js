@@ -12,7 +12,7 @@ class Comment extends React.Component {
 
   render() {
     return (
-      <li><i style={{ color: "red" }}
+      <li><i style={{ color: "red", marginRight: '10px' }}
         className='fas fa-times'
         onClick={() => this.handleRemove(this.props.comment.id, this.props.postId)}></i>
         {this.props.comment.text}</li>
