@@ -20,8 +20,6 @@ function makeTitleFromPost(post) {
 }
 
 export default function rootReducer(state = [], action) {
-  let id, description, title, votes, titleIdx;
-
   switch (action.type) {
 
     case LOADTITLES:
@@ -31,26 +29,17 @@ export default function rootReducer(state = [], action) {
       return [...state, makeTitleFromPost(action.post)];
 
     case EDITPOST:
-      titleIdx = state.findIndex(title => title.id === action.payload.id);
-      ({ id, title, description, votes } = action.payload.post);
-
-      return [
-        ...state.slice(0, titleIdx),
-        { id, title, description, votes },
-        ...state.slice(titleIdx + 1)
-      ]
+      return state.map(
+        title => title.id === action.payload.id ?
+        action.payload.post : title);
 
     case REMOVEPOST:
       return state.filter(title => title.id !== action.id);
 
-    case VOTE: 
-      titleIdx = state.findIndex(title => title.id === action.payload.postId);
-
-      return [
-        ...state.slice(0, titleIdx),
-        { ...state[titleIdx], votes: action.payload.votes },
-        ...state.slice(titleIdx + 1)
-      ]
+    case VOTE:
+      return state.map(
+        title => title.id === action.payload.postId ?
+          { ...title, votes: action.payload.votes } : title);
 
     default:
       return state;
