@@ -1,0 +1,7 @@
+.row {
+    margin-top: 10px;
+    flex-wrap: nowrap;
+}
+.title-card {
+    margin: 10px;
+}
