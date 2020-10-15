@@ -22,7 +22,7 @@ class CommentForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="form-group">
           <input type="text" className="form-control" id="comment"
             placeholder="" name="text" value={this.state.text}
