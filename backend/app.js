@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const postsRoutes = require("./routes/posts");
 const postCommentsRoutes = require("./routes/postComments");
+const pingRoute = require("./routes/ping");
 const cors = require("cors");
 
 const app = express();
@@ -17,6 +18,8 @@ app.use(cors());
 app.use("/api/posts/:post_id/comments", postCommentsRoutes);
 app.use("/api/posts", postsRoutes);
 
+// ping to wake up heroku backend 
+app.use("/ping", pingRoute);
 
 /** 404 Not Found handler. */
 
