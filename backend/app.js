@@ -28,7 +28,7 @@ app.use(function (req, res, next) {
   err.status = 404;
   next(err);
 });
-
+console.log('lol)')
 /** Generic error handler. */
 
 app.use(function (err, req, res, next) {
