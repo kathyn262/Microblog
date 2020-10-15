@@ -4,7 +4,7 @@ import './App.css';
 import NavBox from './Components/NavBox';
 import Routes from './Components/Routes';
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://microblogbackend.herokuapp.com";
 class App extends React.Component {
 
   async componentDidMount() {
