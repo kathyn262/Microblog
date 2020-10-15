@@ -9,7 +9,11 @@ class App extends React.Component {
 
   async componentDidMount() {
     let wake = await axios.get(`${BASE_URL}/ping`);
-    console.log(wake.data);
+    if (wake.status === 200) {
+      console.log(wake.data);
+    } else {
+      console.log('backend did not wake properly');
+    }
   }
   render() {
     return (
